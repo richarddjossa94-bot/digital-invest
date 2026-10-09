@@ -1,527 +1,492 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0f17">
-  <title>Digital Invest</title>
-
-  <style>
-    :root {
-      --fond: #0b0f17;
-      --carte: #151c29;
-      --vert: #50e3a4;
-      --texte: #f4f7fb;
-      --gris: #aab4c5;
-      --bordure: #283346;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--fond);
-      color: var(--texte);
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    header {
-      padding: 20px;
-      border-bottom: 1px solid var(--bordure);
-      text-align: center;
-    }
-
-    .logo {
-      color: var(--vert);
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    .hero {
-      padding: 55px 20px 35px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 7vw, 45px);
-      line-height: 1.2;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      max-width: 600px;
-      margin: 0 auto 20px;
-      color: var(--gris);
-    }
-
-    .accent {
-      color: var(--vert);
-    }
-
-    .conteneur {
-      width: min(100% - 28px, 700px);
-      margin: 25px auto;
-    }
-
-    .carte {
-      background: var(--carte);
-      border: 1px solid var(--bordure);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 20px;
-    }
-
-    h2, h3 {
-      margin-top: 0;
-    }
-
-    .auth {
-      max-width: 480px;
-      margin: 25px auto;
-    }
-
-    label {
-      display: block;
-      margin: 14px 0 6px;
-      color: var(--gris);
-    }
-
-    input {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      background: #0d1320;
-      color: white;
-      border: 1px solid var(--bordure);
-      border-radius: 9px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 12px;
-      border: 0;
-      border-radius: 9px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .principal {
-      background: var(--vert);
-      color: #07140e;
-    }
-
-    .secondaire {
-      background: #253247;
-      color: white;
-    }
-
-    .deconnexion {
-      background: #49252c;
-      color: white;
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: wait;
-    }
-
-    #di-message {
-      margin-top: 15px;
-      overflow-wrap: anywhere;
-      color: var(--gris);
-    }
-
-    .grille {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 12px;
-      background: #0d1320;
-      border: 1px solid var(--bordure);
-    }
-
-    .stat p {
-      color: var(--gris);
-      font-size: 14px;
-      margin: 0 0 8px;
-    }
-
-    .montant {
-      color: var(--vert);
-      font-size: 22px;
-      font-weight: bold;
-      overflow-wrap: anywhere;
-    }
-
-    .note {
-      color: var(--gris);
-      font-size: 13px;
-    }
-
-    .fonction {
-      margin-bottom: 12px;
-      padding: 15px;
-      background: #0d1320;
-      border-radius: 10px;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--gris);
-      padding: 25px 15px;
-      border-top: 1px solid var(--bordure);
-      font-size: 13px;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d0a">
+<title>Digital Invest</title>
+<style>
+:root {
+  --bg:#080d0a; --card:#111a14; --card2:#19251c;
+  --green:#45e69a; --green2:#153c29; --white:#f4faf5;
+  --muted:#94a69a; --border:#26372b; --red:#ff9696;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--bg); color:var(--white);
+  font-family:Arial,Helvetica,sans-serif; line-height:1.45;
+}
+button,input,select { font:inherit; }
+button { cursor:pointer; }
+button:disabled { opacity:.6; cursor:wait; }
+[hidden] { display:none!important; }
+.top {
+  position:sticky; top:0; z-index:20;
+  background:#080d0af5; border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.top-inner {
+  max-width:1050px; margin:auto; padding:15px 16px;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.logo { font-weight:900; font-size:22px; letter-spacing:-.7px; }
+.logo span { color:var(--green); }
+.avatar {
+  width:38px; height:38px; display:grid; place-items:center;
+  border-radius:50%; background:var(--green2); color:var(--green);
+  border:1px solid #2d6346; font-weight:bold;
+}
+.container { max-width:1050px; width:calc(100% - 28px); margin:20px auto 35px; }
+.page { display:none; }
+.page.active { display:block; }
+.muted { color:var(--muted); }
+.small { font-size:12px; }
+h1 { font-size:27px; line-height:1.2; margin:6px 0 15px; }
+h2 { font-size:19px; margin:0 0 13px; }
+h3 { font-size:15px; margin:0 0 7px; }
+p { margin:7px 0 12px; }
+.section-head {
+  display:flex; justify-content:space-between; align-items:center;
+  gap:10px; margin:23px 0 12px;
+}
+.section-head h2 { margin:0; }
+.link-btn { border:0; background:none; color:var(--green); padding:6px 0; }
+.hero {
+  border:1px solid #285039; border-radius:20px; padding:22px;
+  background:radial-gradient(ellipse at top right,#1a5537 0%,transparent 60%),
+             linear-gradient(140deg,#14281b,#0f1711);
+}
+.eyebrow { color:var(--green); text-transform:uppercase; letter-spacing:1.5px; font-size:10px; font-weight:bold; }
+.balance-label { color:#c0d5c6; font-size:13px; }
+.balance { font-size:clamp(29px,7vw,38px); font-weight:800; margin:8px 0 3px; }
+.balance small { font-size:15px; }
+.badge {
+  display:inline-flex; padding:5px 9px; border-radius:20px;
+  background:#163b29; color:#9af2bf; font-size:10px;
+}
+.grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+.actions { margin-top:17px; }
+.action {
+  border:1px solid var(--border); border-radius:14px;
+  background:var(--card); color:var(--white); padding:13px 4px;
+  text-align:center; min-width:0;
+}
+.action:hover { border-color:var(--green); background:var(--card2); }
+.action-icon {
+  width:43px; height:43px; margin:0 auto 8px;
+  display:grid; place-items:center; border-radius:13px;
+  background:var(--green2); color:var(--green); font-size:23px;
+}
+.action span:last-child { display:block; font-size:11px; }
+.card {
+  min-width:0; background:var(--card); border:1px solid var(--border);
+  border-radius:15px; padding:15px;
+}
+.cards2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.product-image {
+  width:100%; height:112px; object-fit:cover; border-radius:10px;
+  background:var(--card2); display:block; margin-bottom:11px;
+}
+.product-price { color:var(--green); font-weight:bold; font-size:15px; }
+.btn {
+  border:1px solid var(--border); border-radius:9px;
+  background:var(--card2); color:var(--white); padding:11px 13px;
+  text-align:center; font-weight:bold; font-size:13px;
+}
+.btn.primary { background:var(--green); color:#07150c; border-color:var(--green); }
+.btn.full { width:100%; }
+.btn-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.stat-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.stat-number { color:var(--green); font-weight:bold; font-size:22px; margin-top:7px; }
+.stat-label { color:var(--muted); font-size:12px; }
+.list-row {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:13px 0; border-bottom:1px solid var(--border);
+}
+.list-row:last-child { border-bottom:0; }
+.list-icon {
+  width:39px; height:39px; flex-shrink:0; display:grid; place-items:center;
+  border-radius:12px; background:var(--green2); color:var(--green); font-size:19px;
+}
+.list-main { display:flex; align-items:center; gap:10px; min-width:0; }
+.list-main p { margin:3px 0 0; font-size:11px; color:var(--muted); }
+.amount { font-weight:bold; white-space:nowrap; font-size:13px; }
+.notice {
+  padding:12px 14px; border-radius:11px; background:#17261b;
+  border:1px solid #304b36; color:#c9dfce; font-size:12px; margin-top:15px;
+}
+label { display:block; margin:13px 0 6px; color:var(--muted); font-size:12px; }
+input,select {
+  width:100%; border:1px solid var(--border); border-radius:9px;
+  padding:12px; color:var(--white); background:#0a100c;
+}
+input:focus,select:focus { outline:1px solid var(--green); }
+.form-card { max-width:460px; margin:15px auto; }
+.message { overflow-wrap:anywhere; font-size:12px; color:var(--muted); }
+.tag { color:var(--green); background:var(--green2); padding:4px 7px; border-radius:20px; font-size:10px; }
+.bottom-nav {
+  position:fixed; z-index:30; bottom:0; left:0; right:0;
+  background:#0b120df7; border-top:1px solid var(--border);
+  display:flex; justify-content:center; padding:7px 4px calc(7px + env(safe-area-inset-bottom));
+}
+.bottom-inner { width:100%; max-width:600px; display:grid; grid-template-columns:repeat(5,1fr); gap:2px; }
+.bottom-nav button {
+  border:0; border-radius:9px; background:none; color:var(--muted);
+  padding:6px 1px; font-size:10px;
+}
+.bottom-nav button b { display:block; font-size:21px; font-weight:normal; margin-bottom:2px; }
+.bottom-nav button.active { color:var(--green); background:var(--green2); }
+footer { text-align:center; padding:20px 12px 105px; color:var(--muted); font-size:11px; }
+@media(min-width:760px) {
+  .container { margin-top:28px; }
+  .hero { padding:30px; }
+  .product-image { height:165px; }
+  .bottom-nav { display:none; }
+  footer { padding-bottom:25px; }
+}
+@media(max-width:360px) {
+  .grid { gap:6px; }
+  .action { padding:10px 2px; }
+  .action-icon { width:37px; height:37px; }
+  .action span:last-child { font-size:10px; }
+}
+</style>
 </head>
-
 <body>
 
-  <header>
-    <div class="logo">Digital Invest</div>
-    <div class="note">Espace numérique de démonstration</div>
-  </header>
+<header class="top">
+  <div class="top-inner">
+    <a href="#" class="logo" data-page="home">Digital<span>Invest</span></a>
+    <button class="avatar" data-page="profile" aria-label="Mon profil">DI</button>
+  </div>
+</header>
 
-  <main>
-    <section class="hero">
-      <h1>Bienvenue sur <span class="accent">Digital Invest</span></h1>
-      <p>
-        Découvre notre espace numérique et accède à ton tableau de bord
-        personnel après connexion.
-      </p>
-    </section>
+<main class="container">
 
-    <section class="conteneur carte">
-      <h2>Comment ça fonctionne ?</h2>
-
-      <div class="fonction">
-        <strong>01 — Crée ton compte</strong>
-        <div class="note">Inscris-toi avec ton adresse e-mail.</div>
+  <!-- ACCUEIL -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="eyebrow">Mon espace financier</div>
+      <h1>Bonjour et bienvenue 👋</h1>
+      <p class="balance-label">Solde de démonstration</p>
+      <div class="balance">0 <small>FCFA</small></div>
+      <span class="badge">● Version de démonstration</span>
+      <div class="grid actions">
+        <button class="action" data-page="operations">
+          <span class="action-icon">↓</span><span>Dépôt</span>
+        </button>
+        <button class="action" data-page="operations">
+          <span class="action-icon">↑</span><span>Retrait</span>
+        </button>
+        <button class="action" data-page="products">
+          <span class="action-icon">◈</span><span>Produits</span>
+        </button>
+        <button class="action" data-page="history">
+          <span class="action-icon">↻</span><span>Historique</span>
+        </button>
       </div>
+    </div>
 
-      <div class="fonction">
-        <strong>02 — Connecte-toi</strong>
-        <div class="note">Accède à ton espace personnel.</div>
+    <div class="section-head">
+      <h2>Vue d'ensemble</h2>
+      <button class="link-btn" data-page="wallet">Voir tout →</button>
+    </div>
+
+    <div class="stat-grid">
+      <div class="card">
+        <div class="stat-label">Montant investi (démo)</div>
+        <div class="stat-number">0 FCFA</div>
       </div>
+      <div class="card">
+        <div class="stat-label">Résultat fictif</div>
+        <div class="stat-number">0 FCFA</div>
+      </div>
+    </div>
 
-      <div class="fonction">
-        <strong>03 — Consulte ton tableau de bord</strong>
-        <div class="note">
-          Les données affichées pour le moment sont des exemples.
+    <div class="section-head">
+      <h2>Produits numériques</h2>
+      <button class="link-btn" data-page="products">Explorer →</button>
+    </div>
+
+    <div class="cards2">
+      <article class="card">
+        <img class="product-image"
+          src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80"
+          alt="Illustration abstraite numérique"
+          onerror="this.style.display='none'">
+        <span class="tag">Exemple</span>
+        <h3 style="margin-top:9px">Guide numérique</h3>
+        <p class="muted small">Contenu éducatif à définir.</p>
+        <div class="product-price">Prix à définir</div>
+        <button class="btn full" style="margin-top:10px" data-page="products">Découvrir</button>
+      </article>
+      <article class="card">
+        <img class="product-image"
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+          alt="Illustration d'outils numériques"
+          onerror="this.style.display='none'">
+        <span class="tag">Exemple</span>
+        <h3 style="margin-top:9px">Formation digitale</h3>
+        <p class="muted small">Formation à définir.</p>
+        <div class="product-price">Prix à définir</div>
+        <button class="btn full" style="margin-top:10px" data-page="products">Découvrir</button>
+      </article>
+    </div>
+
+    <div class="notice">
+      Tous les soldes et résultats sont fictifs. Aucun argent n'est reçu,
+      placé ou généré par cette démonstration.
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="page" id="page-products">
+    <div class="eyebrow">Catalogue</div>
+    <h1>Produits numériques</h1>
+    <p class="muted">Découvre les produits présentés sur la plateforme.</p>
+    <div class="cards2">
+      <article class="card">
+        <img class="product-image"
+          src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80"
+          alt="Illustration numérique" onerror="this.style.display='none'">
+        <span class="tag">Exemple</span>
+        <h3 style="margin-top:9px">Guide numérique</h3>
+        <p class="muted small">Description à compléter.</p>
+        <div class="product-price">Prix à définir</div>
+        <button class="btn full demo-product" style="margin-top:10px">Voir le détail</button>
+      </article>
+      <article class="card">
+        <img class="product-image"
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+          alt="Formation numérique" onerror="this.style.display='none'">
+        <span class="tag">Exemple</span>
+        <h3 style="margin-top:9px">Formation digitale</h3>
+        <p class="muted small">Description à compléter.</p>
+        <div class="product-price">Prix à définir</div>
+        <button class="btn full demo-product" style="margin-top:10px">Voir le détail</button>
+      </article>
+      <article class="card">
+        <div class="product-image" style="display:grid;place-items:center;font-size:45px;color:var(--green)">✦</div>
+        <span class="tag">Exemple</span>
+        <h3 style="margin-top:9px">Pack de ressources</h3>
+        <p class="muted small">Ressources numériques à définir.</p>
+        <div class="product-price">Prix à définir</div>
+        <button class="btn full demo-product" style="margin-top:10px">Voir le détail</button>
+      </article>
+    </div>
+    <div class="notice">Ces fiches sont des exemples visuels. Aucun achat n'est activé.</div>
+  </section>
+
+  <!-- PORTEFEUILLE -->
+  <section class="page" id="page-wallet">
+    <div class="eyebrow">Mon argent</div>
+    <h1>Mon portefeuille</h1>
+    <div class="hero">
+      <div class="balance-label">Solde fictif</div>
+      <div class="balance">0 <small>FCFA</small></div>
+      <span class="badge">Démonstration uniquement</span>
+    </div>
+    <div class="stat-grid" style="margin-top:12px">
+      <div class="card"><div class="stat-label">Montant investi fictif</div><div class="stat-number">0 FCFA</div></div>
+      <div class="card"><div class="stat-label">Résultat fictif</div><div class="stat-number">0 FCFA</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" data-page="operations">Dépôt / retrait</button>
+      <button class="btn" data-page="history">Historique</button>
+    </div>
+    <div class="notice">Ce portefeuille n'est relié à aucun compte bancaire ni Mobile Money.</div>
+  </section>
+
+  <!-- DÉPÔT ET RETRAIT -->
+  <section class="page" id="page-operations">
+    <div class="eyebrow">Services financiers</div>
+    <h1>Dépôt et retrait</h1>
+    <p class="muted">Les formulaires suivants sont des simulations sans transaction.</p>
+    <div class="card">
+      <h2>↓ Simuler un dépôt</h2>
+      <label for="deposit-amount">Montant (FCFA)</label>
+      <input id="deposit-amount" type="number" min="1" placeholder="Ex. 5000">
+      <label for="deposit-method">Moyen de paiement fictif</label>
+      <select id="deposit-method">
+        <option>Mobile Money (démo)</option>
+        <option>Carte bancaire (démo)</option>
+      </select>
+      <button class="btn primary full" id="deposit-button" style="margin-top:14px">Tester le formulaire</button>
+    </div>
+    <div class="card">
+      <h2>↑ Simuler un retrait</h2>
+      <label for="withdraw-amount">Montant (FCFA)</label>
+      <input id="withdraw-amount" type="number" min="1" placeholder="Ex. 2000">
+      <label for="withdraw-method">Destination fictive</label>
+      <select id="withdraw-method">
+        <option>Mobile Money (démo)</option>
+        <option>Compte bancaire (démo)</option>
+      </select>
+      <button class="btn full" id="withdraw-button" style="margin-top:14px">Tester le formulaire</button>
+    </div>
+    <div class="notice" id="operation-message" role="status">
+      Aucun dépôt ou retrait réel n'est possible.
+    </div>
+  </section>
+
+  <!-- HISTORIQUE -->
+  <section class="page" id="page-history">
+    <div class="eyebrow">Activité du compte</div>
+    <h1>Historique</h1>
+    <div class="card">
+      <div class="list-row">
+        <div class="list-main">
+          <div class="list-icon">↻</div>
+          <div><strong>Aucune opération</strong><p>Les opérations de démonstration ne sont pas enregistrées.</p></div>
         </div>
+        <span class="tag">Vide</span>
       </div>
-    </section>
+    </div>
+    <div class="notice">L'historique ne contient aucune transaction réelle.</div>
+  </section>
 
-    <!-- FORMULAIRE DE CONNEXION -->
-    <section class="conteneur carte auth" id="di-auth">
-      <h2>Mon compte</h2>
-      <p class="note">
-        Crée un compte ou connecte-toi avec un compte existant.
-      </p>
-
+  <!-- PROFIL / AUTHENTIFICATION -->
+  <section class="page" id="page-profile">
+    <div class="eyebrow">Mon compte</div>
+    <h1>Profil</h1>
+    <div class="card form-card" id="di-auth">
+      <h2>Connexion</h2>
+      <p class="muted small">Connecte-toi ou crée ton compte.</p>
       <form id="di-form">
         <label for="di-email">Adresse e-mail</label>
-        <input
-          id="di-email"
-          type="email"
-          placeholder="exemple@email.com"
-          autocomplete="email"
-          required
-        >
-
+        <input id="di-email" type="email" autocomplete="email" required placeholder="exemple@email.com">
         <label for="di-password">Mot de passe</label>
-        <input
-          id="di-password"
-          type="password"
-          placeholder="Au moins 6 caractères"
-          autocomplete="current-password"
-          minlength="6"
-          required
-        >
-
-        <button class="principal" id="di-signup" type="button">
-          Créer mon compte
-        </button>
-
-        <button class="secondaire" id="di-login" type="submit">
-          Me connecter
-        </button>
-
-        <button
-          class="deconnexion"
-          id="di-logout"
-          type="button"
-          hidden
-        >
-          Me déconnecter
-        </button>
+        <input id="di-password" type="password" minlength="6" autocomplete="current-password" required placeholder="Au moins 6 caractères">
+        <div class="btn-row" style="display:grid">
+          <button class="btn primary" id="di-login" type="submit">Me connecter</button>
+          <button class="btn" id="di-signup" type="button">Créer mon compte</button>
+          <button class="btn" id="di-logout" type="button" hidden>Me déconnecter</button>
+        </div>
       </form>
-
-      <p id="di-message" role="status" aria-live="polite">
-        Vérification de la connexion...
-      </p>
-    </section>
-
-    <!-- TABLEAU DE BORD : placé AVANT le script de connexion -->
-    <section class="conteneur carte" id="di-dashboard" hidden>
-      <h2>Mon tableau de bord</h2>
-      <p>Bienvenue sur Digital Invest !</p>
-
-      <div class="grille">
-        <div class="stat">
-          <p>Mon solde de démonstration</p>
-          <div class="montant">0 FCFA</div>
+      <p class="message" id="di-message" role="status" aria-live="polite">Vérification de la connexion...</p>
+    </div>
+    <div class="card" id="di-profile-info" hidden>
+      <div class="list-row">
+        <div class="list-main">
+          <div class="list-icon">●</div>
+          <div><strong>Mon compte</strong><p id="di-user-email"></p></div>
         </div>
-
-        <div class="stat">
-          <p>Montant investi</p>
-          <div class="montant">0 FCFA</div>
-        </div>
-
-        <div class="stat">
-          <p>Bénéfices enregistrés</p>
-          <div class="montant">0 FCFA</div>
-        </div>
+        <span class="tag">Connecté</span>
       </div>
+      <p class="muted small">Ton compte est connecté à Supabase. Les opérations financières restent en démonstration.</p>
+      <button class="btn full" data-page="wallet">Ouvrir mon portefeuille</button>
+    </div>
+  </section>
 
-      <h3 style="margin-top:25px">Historique des opérations</h3>
-      <p id="di-history">Aucune opération pour le moment.</p>
+</main>
 
-      <p class="note">
-        Ces chiffres sont fictifs et servent uniquement à tester le site.
-        Aucun argent n'a été reçu, investi ou généré par cette page.
-      </p>
-    </section>
+<!-- Navigation rapide en bas sur téléphone -->
+<nav class="bottom-nav" aria-label="Navigation mobile">
+  <div class="bottom-inner">
+    <button class="active" data-page="home"><b>⌂</b>Accueil</button>
+    <button data-page="products"><b>▦</b>Produits</button>
+    <button data-page="wallet"><b>◈</b>Portefeuille</button>
+    <button data-page="history"><b>↻</b>Historique</button>
+    <button data-page="profile"><b>●</b>Profil</button>
+  </div>
+</nav>
 
-    <section class="conteneur carte">
-      <h2>À propos</h2>
-      <p class="note">
-        Digital Invest est actuellement une démonstration technique.
-        Les paiements réels, les investissements et les éventuels
-        rendements ne sont pas activés.
-      </p>
-    </section>
-  </main>
+<footer>Digital Invest · Démonstration · Les valeurs affichées ne sont pas de l'argent réel.</footer>
 
-  <footer>
-    Digital Invest — Version de démonstration
-  </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  "use strict";
 
-  <!-- Bibliothèque Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  const SUPABASE_URL = "https://nfwpfdssrmluawlxmlij.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_GrcJRs1jlZnWC0Ky62kPIw_fcEsA3kX";
 
-  <script>
-    (() => {
-      "use strict";
+  // Navigation entre les pages.
+  const pages = document.querySelectorAll(".page");
 
-      // Remplace ces deux valeurs par les informations publiques
-      // de TON projet Supabase. N'utilise jamais une clé secrète ici.
-      const SUPABASE_URL =
-        "https://nfwpfdssrmluawlxmlij.supabase.co";
+  function showPage(name) {
+    const target = document.getElementById("page-" + name);
+    if (!target) return;
 
-      const SUPABASE_KEY =
-        "sb_publishable_GrcJRs1jlZnWC0Ky62kPIw_fcEsA3kX";
+    pages.forEach(page => page.classList.toggle("active", page === target));
 
-      const message = document.getElementById("di-message");
-      const form = document.getElementById("di-form");
-      const emailInput = document.getElementById("di-email");
-      const passwordInput = document.getElementById("di-password");
-      const signupButton = document.getElementById("di-signup");
-      const loginButton = document.getElementById("di-login");
-      const logoutButton = document.getElementById("di-logout");
-      const dashboard = document.getElementById("di-dashboard");
+    document.querySelectorAll("[data-page]").forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.page === name &&
+        (button.closest(".bottom-nav") || button.closest(".nav"))
+      );
+    });
 
-      function showMessage(text) {
-        message.textContent = text;
-      }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
-      if (!window.supabase) {
-        showMessage(
-          "Erreur : la bibliothèque de connexion ne s'est pas chargée. Vérifie ta connexion Internet."
-        );
-        return;
-      }
+  document.querySelectorAll("[data-page]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      showPage(button.dataset.page);
+    });
+  });
 
-      if (
-        SUPABASE_URL.includes("COLLE_ICI") ||
-        SUPABASE_KEY.includes("COLLE_ICI")
-      ) {
-        showMessage(
-          "Configuration manquante : ajoute l'URL et la clé publishable de Supabase dans le code."
-        );
-        return;
-      }
+  // Les produits sont des exemples : aucun achat n'est déclenché.
+  document.querySelectorAll(".demo-product").forEach(button => {
+    button.addEventListener("click", () => {
+      alert("Produit de démonstration : aucun achat n'a été effectué.");
+    });
+  });
 
-      let client;
+  const operationMessage = document.getElementById("operation-message");
 
-      try {
-        client = window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_KEY
-        );
-      } catch (error) {
-        showMessage("Impossible de préparer la connexion Supabase.");
-        return;
-      }
+  document.getElementById("deposit-button").addEventListener("click", () => {
+    const amount = Number(document.getElementById("deposit-amount").value);
+    operationMessage.textContent = amount > 0
+      ? "Simulation uniquement : " + amount.toLocaleString("fr-FR") +
+        " FCFA. Aucun argent n'a été envoyé ou reçu."
+      : "Entre un montant supérieur à zéro pour tester le formulaire.";
+  });
 
-      let busy = false;
+  document.getElementById("withdraw-button").addEventListener("click", () => {
+    const amount = Number(document.getElementById("withdraw-amount").value);
+    operationMessage.textContent = amount > 0
+      ? "Simulation uniquement : " + amount.toLocaleString("fr-FR") +
+        " FCFA. Aucun retrait n'a été envoyé."
+      : "Entre un montant supérieur à zéro pour tester le formulaire.";
+  });
 
-      function setBusy(value) {
-        busy = value;
-        signupButton.disabled = value;
-        loginButton.disabled = value;
-        logoutButton.disabled = value;
-      }
+  // Authentification Supabase.
+  const message = document.getElementById("di-message");
+  const form = document.getElementById("di-form");
+  const emailInput = document.getElementById("di-email");
+  const passwordInput = document.getElementById("di-password");
+  const loginButton = document.getElementById("di-login");
+  const signupButton = document.getElementById("di-signup");
+  const logoutButton = document.getElementById("di-logout");
+  const profileInfo = document.getElementById("di-profile-info");
+  const userEmail = document.getElementById("di-user-email");
 
-      async function updateSession() {
-        const { data, error } = await client.auth.getSession();
+  function say(text) { message.textContent = text; }
 
-        if (error) {
-          showMessage("Impossible de vérifier la connexion : " + error.message);
-          return;
-        }
+  if (!window.supabase) {
+    say("Erreur : Supabase ne s'est pas chargé. Vérifie ta connexion Internet.");
+    return;
+  }
 
-        const session = data.session;
-        const connected = Boolean(session);
+  let client;
+  try {
+    client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  } catch (error) {
+    say("Impossible d'initialiser Supabase.");
+    return;
+  }
 
-        signupButton.hidden = connected;
-        loginButton.hidden = connected;
-        logoutButton.hidden = !connected;
-        emailInput.disabled = connected;
-        passwordInput.disabled = connected;
-        dashboard.hidden = !connected;
+  let busy = false;
 
-        if (connected) {
-          showMessage("Connecté : " + session.user.email);
-        } else {
-          showMessage("Tu n'es pas connecté.");
-        }
-      }
+  function setBusy(value) {
+    busy = value;
+    loginButton.disabled = value;
+    signupButton.disabled = value;
+    logoutButton.disabled = value;
+  }
 
-      async function authenticate(isSignup) {
-        if (busy) return;
-
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-
-        if (!email || !password) {
-          showMessage("Entre ton adresse e-mail et ton mot de passe.");
-          return;
-        }
-
-        setBusy(true);
-        showMessage(
-          isSignup ? "Création du compte en cours..." : "Connexion en cours..."
-        );
-
-        try {
-          let result;
-
-          if (isSignup) {
-            result = await client.auth.signUp({
-              email: email,
-              password: password
-            });
-          } else {
-            result = await client.auth.signInWithPassword({
-              email: email,
-              password: password
-            });
-          }
-
-          if (result.error) {
-            showMessage("Erreur : " + result.error.message);
-            return;
-          }
-
-          if (
-            isSignup &&
-            result.data.user &&
-            !result.data.session
-          ) {
-            showMessage(
-              "Compte créé. Vérifie ta boîte e-mail et confirme ton adresse avant de te connecter."
-            );
-            return;
-          }
-
-          showMessage(isSignup ? "Compte créé avec succès !" : "Connexion réussie !");
-          await updateSession();
-
-        } catch (error) {
-          showMessage("Une erreur est survenue. Vérifie Internet et réessaie.");
-        } finally {
-          setBusy(false);
-        }
-      }
-
-      signupButton.addEventListener("click", () => {
-        authenticate(true);
-      });
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        authenticate(false);
-      });
-
-      logoutButton.addEventListener("click", async () => {
-        if (busy) return;
-
-        setBusy(true);
-
-        try {
-          const { error } = await client.auth.signOut();
-
-          if (error) {
-            showMessage("Erreur de déconnexion : " + error.message);
-            return;
-          }
-
-          passwordInput.value = "";
-          showMessage("Tu es déconnecté.");
-          await updateSession();
-
-        } catch (error) {
-          showMessage("La déconnexion a échoué. Réessaie.");
-        } finally {
-          setBusy(false);
-        }
-      });
-
-      client.auth.onAuthStateChange((_event, session) => {
-        const connected = Boolean(session);
-
-        signupButton.hidden = connected;
-        loginButton.hidden = connected;
-        logoutButton.hidden = !connected;
-        emailInput.disabled = connected;
-        passwordInput.disabled = connected;
-        dashboard.hidden = !connected;
-
-        showMessage(
-          connected
-            ? "Connecté : " + session.user.email
-            : "Tu n'es pas connecté."
-        );
-      });
-
-      updateSession();
-    })();
-  </script>
-
-</body>
-</html>
+  functio
