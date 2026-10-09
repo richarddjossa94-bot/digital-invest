@@ -331,10 +331,10 @@
       // Remplace ces deux valeurs par les informations publiques
       // de TON projet Supabase. N'utilise jamais une clé secrète ici.
       const SUPABASE_URL =
-        "COLLE_ICI_URL_SUPABASE";
+        "https://nfwpfdssrmluawlxmlij.supabase.co";
 
       const SUPABASE_KEY =
-        "COLLE_ICI_CLE_PUBLISHABLE";
+        "sb_publishable_GrcJRs1jlZnWC0Ky62kPIw_fcEsA3kX";
 
       const message = document.getElementById("di-message");
       const form = document.getElementById("di-form");
